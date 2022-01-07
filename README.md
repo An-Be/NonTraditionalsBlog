@@ -1,4 +1,4 @@
-#Non-Traditionals Blog
+# Non-Traditionals Blog #
 
 A Blog ASP.Net Core (MVC) App. This blog is meant for mainly those who are planning to go into or have already gone into the tech field but have non-traditional backgrounds.
 So those who went through a bootcamp, are self taught, just went through an apprenticeship that landed them a position, and more! There are lots of ways to get into tech.
