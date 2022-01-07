@@ -1,0 +1,45 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+	<h1 class="display-4">Hello &#128075;</h1>
+
+	<br />
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card">
+					@*<img class="card-img-top" src="..." alt="Card image cap">*@
+					<div class="card-body d-flex flex-column">
+						<h5 class="card-title">What is this place? &#129335</h5>
+						<p class="card-text">Non-Traditionals Blog is a place where all us tech loving folks with non-traditional backgrounds, can come on and write about our own individual journeys. This includes those who went through bootcamps and are self taught as well.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+					@*<img class="card-img-top" src="..." alt="Card image cap">*@
+					<div class="card-body d-flex flex-column">
+						<h5 class="card-title">I have a degree can I still join? &#127891</h5>
+						<p class="card-text">Of course! The more the merrier. We can all learn from each other no matter our backgrounds.</p>					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+				@*<img class="card-img-top" src="..." alt="Card image cap">*@
+					<div class="card-body d-flex flex-column">
+						<h5 class="card-title">How Do I start? &#128221</h5>
+						<p class="card-text">Just click "register" below to get started posting. If you're only here to look around, you can take a look at other users posts by clicking on "View Posts" below.</p>
+						<div>
+							<button class="btn btn-sm btn-outline-primary" asp-area="Identity" asp-page="/Account/Register">Register</button>
+							@*change asp-area and asp-page once page for posts is made!!!*@
+							<button class="btn btn-sm btn-outline-primary" asp-area="Identity" asp-page="/Account/Register">View Posts</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
