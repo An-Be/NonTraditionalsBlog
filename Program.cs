@@ -12,8 +12,6 @@ builder.Services.AddDbContext<UsersContext>(options =>
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-//builder.Services.AddDbContext<UsersContext>(options =>
-//    options.UseSqlite(UsersconnectionString));
 
 builder.Services.AddDbContext<BlogDbContext>(options =>
     options.UseSqlite(connectionString));

@@ -22,7 +22,8 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model!) 
+{
         <tr>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>            
@@ -30,11 +31,16 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TimeStamp)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                @if (User!.Identity!.IsAuthenticated)
+                {
+                    <td>
+                        @*The following links will only show if a user is logged in*@
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit |</a>                
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+                    </td>
+                }
+            </tr>
+} 
     </tbody>
 </table>

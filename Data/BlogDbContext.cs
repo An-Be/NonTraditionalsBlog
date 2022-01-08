@@ -10,6 +10,6 @@ namespace NonTraditionalsBlog.Data
             : base(options)
         {
         }
-        public DbSet<Blog>? Blogs { get; set; }
+        public DbSet<Blog> Blogs { get; set; } = null!;
     }
 }
