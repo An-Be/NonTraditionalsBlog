@@ -5,7 +5,7 @@ using NonTraditionalsBlog.Areas.Identity.Data;
 
 namespace NonTraditionalsBlog.Data;
 
-public class UsersContext : IdentityDbContext<NonTraditionalsBlogUser>
+public class UsersContext : IdentityDbContext<IdentityUser>
 {
     public UsersContext(DbContextOptions<UsersContext> options)
         : base(options)

@@ -6,16 +6,22 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var UsersconnectionString = builder.Configuration.GetConnectionString("UsersContextConnection");
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<UsersContext>(options =>
     options.UseSqlite(UsersconnectionString));
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+//builder.Services.AddDbContext<UsersContext>(options =>
+//    options.UseSqlite(UsersconnectionString));
+
 builder.Services.AddDbContext<BlogDbContext>(options =>
     options.UseSqlite(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<BlogDbContext>();
+    .AddEntityFrameworkStores<UsersContext>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
