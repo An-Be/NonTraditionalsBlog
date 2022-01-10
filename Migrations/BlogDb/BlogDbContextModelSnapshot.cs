@@ -33,11 +33,9 @@ namespace NonTraditionalsBlog.Migrations.BlogDb
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("UserName")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ViewCount")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

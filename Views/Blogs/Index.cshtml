@@ -1,19 +1,27 @@
-﻿@model IEnumerable<NonTraditionalsBlog.Models.Blog>
+﻿
+@model IEnumerable<NonTraditionalsBlog.Models.Blog>
 
 @{
     ViewData["Title"] = "Index";
+    string? UserName = User?.Identity?.Name;
 }
 
 <h1 class="text-center">Posts</h1>
 
-<p style="text-align:center">
-    <a asp-action="Create">Create New Blog</a>
-</p>
+@if (User!.Identity!.IsAuthenticated)
+{
+    <p style="text-align:center">
+        <a asp-action="Create">Create New Blog</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TimeStamp)
@@ -22,16 +30,20 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model!) 
+@foreach (var item in Model!)
 {
         <tr>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>            
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.TimeStamp)
             </td>
-                @if (User!.Identity!.IsAuthenticated)
+          
+                @if (User!.Identity!.IsAuthenticated && UserName == item.UserName)
                 {
                     <td>
                         @*The following links will only show if a user is logged in*@
@@ -40,7 +52,8 @@
 
                     </td>
                 }
-            </tr>
-} 
+      </tr>
+}
+
     </tbody>
 </table>

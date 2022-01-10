@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NonTraditionalsBlog.Models;
+
 namespace NonTraditionalsBlog.Data;
 
 public class UsersContext : IdentityDbContext<IdentityUser>

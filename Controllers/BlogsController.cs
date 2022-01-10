@@ -60,14 +60,27 @@ namespace NonTraditionalsBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Create([Bind("Id,Title,Content,TimeStamp")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Id,UserName,Title,Content,TimeStamp")] Blog blog)
         {
+            if (User.Identity.IsAuthenticated)
+            { 
+                blog.UserName = User.Identity.Name;
+                ModelState.Clear();
+                ModelState.MarkFieldValid("UserName");
+            }
+            else
+            {
+                blog.UserName = "Unknown";
+            }
+            
+            
             if (ModelState.IsValid)
             {
                 _context.Add(blog);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(blog);
         }
 
@@ -94,8 +107,19 @@ namespace NonTraditionalsBlog.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content,TimeStamp")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Title,Content,TimeStamp")] Blog blog)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                blog.UserName = User.Identity.Name;
+                ModelState.Clear();
+                ModelState.MarkFieldValid("UserName");
+            }
+            else
+            {
+                blog.UserName = "Unknown";
+            }
+
             if (id != blog.Id)
             {
                 return NotFound();
@@ -121,6 +145,10 @@ namespace NonTraditionalsBlog.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            if (blog.UserName != User.Identity.Name)
+            {
+                return View("NotValidUser");
+            }
             return View(blog);
         }
 
@@ -138,6 +166,10 @@ namespace NonTraditionalsBlog.Controllers
             if (blog == null)
             {
                 return NotFound();
+            }
+            if(blog.UserName != User.Identity.Name)
+            {
+                return View("NotValidUser");
             }
 
             return View(blog);

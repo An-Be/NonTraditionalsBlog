@@ -11,8 +11,8 @@ using NonTraditionalsBlog.Data;
 namespace NonTraditionalsBlog.Migrations.BlogDb
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20220107205804_BlogInitialMigration")]
-    partial class BlogInitialMigration
+    [Migration("20220110181701_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,12 +26,17 @@ namespace NonTraditionalsBlog.Migrations.BlogDb
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("TimeStamp")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
