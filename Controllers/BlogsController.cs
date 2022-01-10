@@ -64,7 +64,7 @@ namespace NonTraditionalsBlog.Controllers
         {
             if (User.Identity.IsAuthenticated)
             { 
-                blog.UserName = User.Identity.Name;
+                blog.UserName = User.Claims.FirstOrDefault(x => x.Type == "Name").Value;
                 ModelState.Clear();
                 ModelState.MarkFieldValid("UserName");
             }
@@ -111,7 +111,7 @@ namespace NonTraditionalsBlog.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                blog.UserName = User.Identity.Name;
+                blog.UserName = User.Claims.FirstOrDefault(x => x.Type == "Name").Value;
                 ModelState.Clear();
                 ModelState.MarkFieldValid("UserName");
             }
@@ -145,7 +145,7 @@ namespace NonTraditionalsBlog.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            if (blog.UserName != User.Identity.Name)
+            if (blog.UserName != User.Claims.FirstOrDefault(x => x.Type == "Name").Value)
             {
                 return View("NotValidUser");
             }
@@ -167,7 +167,7 @@ namespace NonTraditionalsBlog.Controllers
             {
                 return NotFound();
             }
-            if(blog.UserName != User.Identity.Name)
+            if(blog.UserName != User.Claims.FirstOrDefault(x => x.Type == "Name").Value)
             {
                 return View("NotValidUser");
             }

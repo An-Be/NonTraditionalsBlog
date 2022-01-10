@@ -1,9 +1,8 @@
-﻿
-@model IEnumerable<NonTraditionalsBlog.Models.Blog>
+﻿@model IEnumerable<NonTraditionalsBlog.Models.Blog>
 
 @{
     ViewData["Title"] = "Index";
-    string? UserName = User?.Identity?.Name;
+    string? UserName = User.Claims?.FirstOrDefault(x => x.Type == "Name")?.Value;
 }
 
 <h1 class="text-center">Posts</h1>

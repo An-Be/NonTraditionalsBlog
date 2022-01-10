@@ -2,7 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
-    string? UserName = User?.Identity?.Name;
+    string? UserName = User.Claims?.FirstOrDefault(x => x.Type == "Name")?.Value;
 }
 
 

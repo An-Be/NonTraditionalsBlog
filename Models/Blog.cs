@@ -15,6 +15,7 @@ namespace NonTraditionalsBlog.Models
         public string? Content { get; set; } 
         [Required]
         [DisplayName("Time Stamp")]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime TimeStamp { get; set; }
     }
 }
